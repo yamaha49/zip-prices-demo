@@ -1,4 +1,16 @@
-import data from './sample-data.json';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+
+// Load sample data
+let data;
+try {
+  const dataPath = join(process.cwd(), 'api', 'sample-data.json');
+  const dataFile = readFileSync(dataPath, 'utf8');
+  data = JSON.parse(dataFile);
+} catch (error) {
+  console.error('Error loading sample data:', error);
+  data = {};
+}
 
 export default function handler(req, res) {
   if (req.method !== 'GET') {
