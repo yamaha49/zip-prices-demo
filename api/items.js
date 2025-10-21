@@ -1,4 +1,4 @@
-import data from '../src/sample-data.json';
+import data from './sample-data.json';
 
 export default function handler(req, res) {
   if (req.method !== 'GET') {
