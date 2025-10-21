@@ -30,6 +30,8 @@ export function ProductPage() {
   const [loading, setLoading] = useState(true)
   const [selectedImage, setSelectedImage] = useState(0)
   const [quantity, setQuantity] = useState(1)
+  const [vipStatus, setVipStatus] = useState(false)
+  const [unlocked, setUnlocked] = useState(false)
 
   const handleUnsubscribe = () => {
     // Clear all VIP-related data
@@ -55,6 +57,12 @@ export function ProductPage() {
       return
     }
 
+    // Check registration status
+    const isVIP = localStorage.getItem('cardLinked') === 'true'
+    const isUnlocked = sessionStorage.getItem('unlockedZip') === zip || params.get('unlocked') === 'true'
+    setVipStatus(isVIP)
+    setUnlocked(isUnlocked)
+
     // Simulate fetching product details
     const fetchProduct = async () => {
       setLoading(true)
@@ -69,7 +77,7 @@ export function ProductPage() {
         score: 49.0,
         stock: 3,
         store: "Home Depot",
-        imageUrl: "/goods/11.jpg",
+        imageUrl: "/src/components/goods/11.jpg",
         brand: "Milwaukee",
         location: "Auburn (opelika) #816: Opelika, AL (2.4 mi)",
         aisle: "Aisle 5 - Bay 13",
@@ -84,7 +92,7 @@ export function ProductPage() {
     }
 
     fetchProduct()
-  }, [productId, navigate])
+  }, [productId, navigate, zip, params])
 
   const handleBuyNow = () => {
     // Navigate to checkout or payment
@@ -153,12 +161,28 @@ export function ProductPage() {
             {/* Left Column - Product Images */}
             <div className="space-y-4">
               {/* Main Image */}
-              <div className="relative">
+              <div className="relative group cursor-pointer">
                 <img
                   src={product.imageUrl}
                   alt={product.title}
-                  className="w-full h-96 object-cover rounded-2xl border border-purple-400/30"
+                  className={`w-full h-96 object-cover rounded-2xl border border-purple-400/30 transition-all duration-500 ${(unlocked || vipStatus) ? 'filter-none' : 'filter blur-lg brightness-50 saturate-150'}`}
                 />
+                {!(unlocked || vipStatus) && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/90 via-purple-900/80 to-black/90 backdrop-blur-md group-hover:from-black/95 group-hover:via-purple-800/90 group-hover:to-black/95 transition-all duration-300 rounded-2xl">
+                    <div className="text-center transform group-hover:scale-105 transition-transform duration-300">
+                      <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-2xl animate-pulse group-hover:animate-bounce">
+                        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                      </div>
+                      <p className="text-white text-lg font-bold mb-2 group-hover:text-yellow-300 transition-colors duration-300">🔒 Premium Product Locked</p>
+                      <p className="text-white/90 text-sm mb-3 group-hover:text-white transition-colors duration-300">Sign up to reveal this amazing deal!</p>
+                      <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 py-2 rounded-full text-sm font-bold shadow-lg group-hover:shadow-xl transition-all duration-300">
+                        Click to Unlock
+                      </div>
+                    </div>
+                  </div>
+                )}
                 <div className="absolute top-4 right-4 flex gap-2">
                   <button className="w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
