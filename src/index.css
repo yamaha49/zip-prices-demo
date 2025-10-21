@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+/* Global theme tokens */
+:root {
+  --bg: #0a0b10;
+  --card: rgba(255, 255, 255, 0.04);
+  --accent: #8a5cff; /* neon purple */
+  --accent-2: #00e08f; /* neon green */
+}
+
+html, body, #app {
+  height: 100%;
+}
+
+body {
+  @apply text-white bg-[var(--bg)] antialiased;
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.btn-primary {
+  @apply rounded-xl px-5 py-3 font-semibold text-black shadow-lg shadow-purple-500/20;
+  background: radial-gradient(120% 120% at 20% 0%, var(--accent) 0%, #5b34ff 40%, #2b1a75 100%);
+  color: white;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+/* Animated gradient background */
+.hero-gradient {
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(138,92,255,0.25), transparent),
+              radial-gradient(1000px 600px at 90% -10%, rgba(0,224,143,0.18), transparent),
+              radial-gradient(800px 500px at 50% 110%, rgba(138,92,255,0.15), transparent);
+  animation: glowPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  from { filter: saturate(1) brightness(1); }
+  to   { filter: saturate(1.2) brightness(1.15); }
+}
+
+/* Shimmer placeholder */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: "";
+  position: absolute; inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.08), transparent);
+  animation: shimmer 1.8s infinite;
+}
+@keyframes shimmer { to { transform: translateX(100%); } }
+
+/* Hover tilt */
+.tilt:hover { transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-2px); }
+.tilt { transition: transform .2s ease, box-shadow .2s ease; }
+
+/* Lock pulse */
+.lock-pulse { animation: lock 1.6s ease-in-out infinite; }
+@keyframes lock { 0%,100%{ transform: scale(1); opacity:.9 } 50%{ transform: scale(1.06); opacity:1 } }
+
+/* Flashing light animations */
+.flash-light {
+  animation: flashLight 2s ease-in-out infinite;
+}
+
+@keyframes flashLight {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+}
+
+.flash-border {
+  animation: flashBorder 1.5s ease-in-out infinite;
+}
+
+@keyframes flashBorder {
+  0%, 100% { 
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+  }
+  50% { 
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4), 0 0 10px rgba(138, 92, 255, 0.3);
+  }
+}
+
+.flash-button {
+  animation: flashButton 1.8s ease-in-out infinite;
+}
+
+@keyframes flashButton {
+  0%, 100% { 
+    box-shadow: 0 4px 15px rgba(138, 92, 255, 0.2);
+  }
+  50% { 
+    box-shadow: 0 4px 25px rgba(138, 92, 255, 0.4), 0 0 20px rgba(138, 92, 255, 0.3);
+  }
+}
+
