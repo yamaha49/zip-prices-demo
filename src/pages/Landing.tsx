@@ -46,12 +46,17 @@ export function Landing() {
 
       {/* Header */}
       <header className="relative z-10 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <motion.button
+          onClick={() => navigate('/')}
+          className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
           <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
             <span className="text-white font-bold text-sm">E</span>
           </div>
           <span className="text-xl font-bold text-white">EMONEY</span>
-        </div>
+        </motion.button>
         <div className="text-white/70 text-sm">
           Deals near you
         </div>

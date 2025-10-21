@@ -77,7 +77,7 @@ export function ProductPage() {
         score: 49.0,
         stock: 3,
         store: "Home Depot",
-        imageUrl: "/src/components/goods/11.jpg",
+        imageUrl: "/goods/11.jpg",
         brand: "Milwaukee",
         location: "Auburn (opelika) #816: Opelika, AL (2.4 mi)",
         aisle: "Aisle 5 - Bay 13",
@@ -129,8 +129,8 @@ export function ProductPage() {
         <header className="px-6 py-4 flex items-center justify-between">
           <motion.button
             onClick={() => {
-              console.log('Logo clicked, navigating to dashboard with zip:', zip)
-              navigate(`/dashboard?zip=${zip}`)
+              console.log('Logo clicked, navigating to landing page')
+              navigate('/')
             }}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
             whileHover={{ scale: 1.05 }}
@@ -165,10 +165,10 @@ export function ProductPage() {
                 <img
                   src={product.imageUrl}
                   alt={product.title}
-                  className={`w-full h-96 object-cover rounded-2xl border border-purple-400/30 transition-all duration-500 ${(unlocked || vipStatus) ? 'filter-none' : 'filter blur-lg brightness-50 saturate-150'}`}
+                  className={`w-full h-96 object-cover rounded-2xl border border-purple-400/30 transition-all duration-500 ${(unlocked || vipStatus) ? '' : 'filter blur-sm'}`}
                 />
                 {!(unlocked || vipStatus) && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/90 via-purple-900/80 to-black/90 backdrop-blur-md group-hover:from-black/95 group-hover:via-purple-800/90 group-hover:to-black/95 transition-all duration-300 rounded-2xl">
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/60 via-purple-900/50 to-black/60 backdrop-blur-sm group-hover:from-black/70 group-hover:via-purple-800/60 group-hover:to-black/70 transition-all duration-300 rounded-2xl">
                     <div className="text-center transform group-hover:scale-105 transition-transform duration-300">
                       <div className="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-2xl animate-pulse group-hover:animate-bounce">
                         <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

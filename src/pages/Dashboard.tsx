@@ -271,12 +271,17 @@ export function Dashboard() {
       <div className="relative z-10 px-6 pb-20">
         {/* Header */}
         <header className="py-6 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <motion.button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-sm">E</span>
             </div>
             <span className="text-xl font-bold text-white">EMONEY</span>
-          </div>
+          </motion.button>
           <div className="flex items-center gap-4">
             <div className="text-white/70 text-sm">
               Deals near you
@@ -409,10 +414,10 @@ export function Dashboard() {
                 <img 
                   src={item.imageUrl} 
                   alt={item.title} 
-                  className={`w-full aspect-square object-cover transition-all duration-500 ${(unlocked || vipStatus) ? 'filter-none' : 'filter blur-lg brightness-50 saturate-150'}`} 
+                  className={`w-full aspect-square object-cover transition-all duration-500 ${(unlocked || vipStatus) ? '' : 'filter blur-sm'}`} 
                 />
                 {!(unlocked || vipStatus) && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/90 via-purple-900/80 to-black/90 backdrop-blur-md group-hover:from-black/95 group-hover:via-purple-800/90 group-hover:to-black/95 transition-all duration-300">
+                  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/60 via-purple-900/50 to-black/60 backdrop-blur-sm group-hover:from-black/70 group-hover:via-purple-800/60 group-hover:to-black/70 transition-all duration-300">
                     <div className="text-center transform group-hover:scale-105 transition-transform duration-300">
                       <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-2xl animate-pulse group-hover:animate-bounce">
                         <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
