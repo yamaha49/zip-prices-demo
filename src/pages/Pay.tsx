@@ -70,7 +70,7 @@ export function Pay() {
 
   return (
     <div className="min-h-full px-6 py-10 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-[1150px] mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

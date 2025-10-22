@@ -127,23 +127,23 @@ export function CreditCardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0f] relative overflow-hidden">
       {/* Background Effects */}
       <div className="fixed inset-0 w-full h-full">
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent opacity-40"></div>
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/3 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+      <div className="relative z-10 min-h-screen flex items-center justify-center p-6">
         <motion.div
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
-          className="bg-black/70 backdrop-blur-2xl rounded-3xl p-8 max-w-2xl w-full border border-purple-400/30 shadow-2xl"
+          className="bg-black rounded-3xl p-10 max-w-[1150px] w-full border border-white/10 shadow-2xl"
         >
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">Link Your Card</h1>
-            <p className="text-white/70">Complete your VIP membership setup</p>
+          <div className="text-center mb-10">
+            <h1 className="text-4xl font-bold text-white mb-3">Link Your Card</h1>
+            <p className="text-white/50 text-lg">Complete your VIP membership setup</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -152,12 +152,12 @@ export function CreditCardPage() {
               <h3 className="text-lg font-semibold text-white">Card Information</h3>
               
               <div>
-                <label className="block text-white/80 text-sm mb-2">Card Number</label>
+                <label className="block text-white/70 text-sm font-medium mb-2">Card Number</label>
                 <input
                   type="text"
                   name="cardNumber"
                   placeholder="•••• •••• •••• ••••"
-                  className="w-full px-4 py-3 bg-black/50 border border-white/30 rounded-lg text-white placeholder-white/60 focus:border-purple-400 focus:outline-none transition-colors"
+                  className="w-full px-5 py-3.5 bg-[#0a0a15] border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-purple-400/60 focus:outline-none transition-all duration-200"
                   value={formData.cardNumber}
                   onChange={(e) => {
                     const formatted = formatCardNumber(e.target.value)
@@ -166,18 +166,18 @@ export function CreditCardPage() {
                   maxLength={19}
                 />
                 {errors.cardNumber && (
-                  <p className="text-red-400 text-sm mt-1">{errors.cardNumber}</p>
+                  <p className="text-red-400 text-sm mt-1.5">{errors.cardNumber}</p>
                 )}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-white/80 text-sm mb-2">Expiration Date</label>
+                  <label className="block text-white/70 text-sm font-medium mb-2">Expiration Date</label>
                   <input
                     type="text"
                     name="expiryDate"
                     placeholder="MM/YY"
-                    className="w-full px-4 py-3 bg-black/50 border border-white/30 rounded-lg text-white placeholder-white/60 focus:border-purple-400 focus:outline-none transition-colors"
+                    className="w-full px-5 py-3.5 bg-[#0a0a15] border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-purple-400/60 focus:outline-none transition-all duration-200"
                     value={formData.expiryDate}
                     onChange={(e) => {
                       const formatted = formatExpiryDate(e.target.value)
@@ -186,39 +186,39 @@ export function CreditCardPage() {
                     maxLength={5}
                   />
                   {errors.expiryDate && (
-                    <p className="text-red-400 text-sm mt-1">{errors.expiryDate}</p>
+                    <p className="text-red-400 text-sm mt-1.5">{errors.expiryDate}</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-white/80 text-sm mb-2">CVC</label>
+                  <label className="block text-white/70 text-sm font-medium mb-2">CVC</label>
                   <input
                     type="text"
                     name="cvc"
                     placeholder="•••"
-                    className="w-full px-4 py-3 bg-black/50 border border-white/30 rounded-lg text-white placeholder-white/60 focus:border-purple-400 focus:outline-none transition-colors"
+                    className="w-full px-5 py-3.5 bg-[#0a0a15] border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-purple-400/60 focus:outline-none transition-all duration-200"
                     value={formData.cvc}
                     onChange={handleInputChange}
                     maxLength={4}
                   />
                   {errors.cvc && (
-                    <p className="text-red-400 text-sm mt-1">{errors.cvc}</p>
+                    <p className="text-red-400 text-sm mt-1.5">{errors.cvc}</p>
                   )}
                 </div>
               </div>
 
               <div>
-                <label className="block text-white/80 text-sm mb-2">Cardholder Name</label>
+                <label className="block text-white/70 text-sm font-medium mb-2">Cardholder Name</label>
                 <input
                   type="text"
                   name="cardholderName"
                   placeholder="John Doe"
-                  className="w-full px-4 py-3 bg-black/50 border border-white/30 rounded-lg text-white placeholder-white/60 focus:border-purple-400 focus:outline-none transition-colors"
+                  className="w-full px-5 py-3.5 bg-[#0a0a15] border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-purple-400/60 focus:outline-none transition-all duration-200"
                   value={formData.cardholderName}
                   onChange={handleInputChange}
                 />
                 {errors.cardholderName && (
-                  <p className="text-red-400 text-sm mt-1">{errors.cardholderName}</p>
+                  <p className="text-red-400 text-sm mt-1.5">{errors.cardholderName}</p>
                 )}
               </div>
             </div>
@@ -228,76 +228,76 @@ export function CreditCardPage() {
               <h3 className="text-lg font-semibold text-white">Billing Address</h3>
               
               <div>
-                <label className="block text-white/80 text-sm mb-2">Street Address</label>
+                <label className="block text-white/70 text-sm font-medium mb-2">Street Address</label>
                 <input
                   type="text"
                   name="streetAddress"
                   placeholder="123 Main St"
-                  className="w-full px-4 py-3 bg-black/50 border border-white/30 rounded-lg text-white placeholder-white/60 focus:border-purple-400 focus:outline-none transition-colors"
+                  className="w-full px-5 py-3.5 bg-[#0a0a15] border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-purple-400/60 focus:outline-none transition-all duration-200"
                   value={formData.streetAddress}
                   onChange={handleInputChange}
                 />
                 {errors.streetAddress && (
-                  <p className="text-red-400 text-sm mt-1">{errors.streetAddress}</p>
+                  <p className="text-red-400 text-sm mt-1.5">{errors.streetAddress}</p>
                 )}
               </div>
 
               <div>
-                <label className="block text-white/80 text-sm mb-2">City</label>
+                <label className="block text-white/70 text-sm font-medium mb-2">City</label>
                 <input
                   type="text"
                   name="city"
                   placeholder="Miami"
-                  className="w-full px-4 py-3 bg-black/50 border border-white/30 rounded-lg text-white placeholder-white/60 focus:border-purple-400 focus:outline-none transition-colors"
+                  className="w-full px-5 py-3.5 bg-[#0a0a15] border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-purple-400/60 focus:outline-none transition-all duration-200"
                   value={formData.city}
                   onChange={handleInputChange}
                 />
                 {errors.city && (
-                  <p className="text-red-400 text-sm mt-1">{errors.city}</p>
+                  <p className="text-red-400 text-sm mt-1.5">{errors.city}</p>
                 )}
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-white/80 text-sm mb-2">State</label>
+                  <label className="block text-white/70 text-sm font-medium mb-2">State</label>
                   <input
                     type="text"
                     name="state"
                     placeholder="FL"
-                    className="w-full px-4 py-3 bg-black/50 border border-white/30 rounded-lg text-white placeholder-white/60 focus:border-purple-400 focus:outline-none transition-colors"
+                    className="w-full px-5 py-3.5 bg-[#0a0a15] border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-purple-400/60 focus:outline-none transition-all duration-200"
                     value={formData.state}
                     onChange={handleInputChange}
                     maxLength={2}
                   />
                   {errors.state && (
-                    <p className="text-red-400 text-sm mt-1">{errors.state}</p>
+                    <p className="text-red-400 text-sm mt-1.5">{errors.state}</p>
                   )}
                 </div>
 
                 <div>
-                  <label className="block text-white/80 text-sm mb-2">ZIP Code</label>
+                  <label className="block text-white/70 text-sm font-medium mb-2">ZIP Code</label>
                   <input
                     type="text"
                     name="zipCode"
                     placeholder="33130"
-                    className="w-full px-4 py-3 bg-black/50 border border-white/30 rounded-lg text-white placeholder-white/60 focus:border-purple-400 focus:outline-none transition-colors"
+                    className="w-full px-5 py-3.5 bg-[#0a0a15] border border-white/20 rounded-xl text-white placeholder-white/40 focus:border-purple-400/60 focus:outline-none transition-all duration-200"
                     value={formData.zipCode}
                     onChange={handleInputChange}
                     maxLength={5}
                   />
                   {errors.zipCode && (
-                    <p className="text-red-400 text-sm mt-1">{errors.zipCode}</p>
+                    <p className="text-red-400 text-sm mt-1.5">{errors.zipCode}</p>
                   )}
                 </div>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex gap-4 pt-6">
+            <div className="flex gap-4 pt-8">
               <motion.button
                 type="button"
                 onClick={() => navigate(-1)}
-                className="flex-1 py-3 px-6 rounded-xl bg-gray-600 hover:bg-gray-700 text-white transition-all duration-300"
+                className="flex-1 py-3.5 px-6 rounded-xl bg-[#374151] hover:bg-[#4b5563] text-white font-semibold transition-all duration-300 shadow-lg"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -307,7 +307,7 @@ export function CreditCardPage() {
               <motion.button
                 type="submit"
                 disabled={loading}
-                className="flex-1 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:from-gray-600 disabled:to-gray-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
+                className="flex-1 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 hover:from-purple-600 hover:via-pink-600 hover:to-purple-700 disabled:from-gray-600 disabled:to-gray-700 text-white font-bold py-3.5 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50"
                 whileHover={{ scale: loading ? 1 : 1.02 }}
                 whileTap={{ scale: loading ? 1 : 0.98 }}
               >

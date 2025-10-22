@@ -156,7 +156,7 @@ export function ProductPage() {
           </div>
         </header>
 
-        <div className="max-w-7xl mx-auto px-6 py-8">
+        <div className="max-w-[1150px] mx-auto px-6 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left Column - Product Images */}
             <div className="space-y-4">

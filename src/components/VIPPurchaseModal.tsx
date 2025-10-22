@@ -94,8 +94,19 @@ export function VIPPurchaseModal({ isOpen, onClose, onSelectPlan }: VIPPurchaseM
         </button>
 
         <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold text-white mb-4">Choose Your Plan</h2>
-          <p className="text-white/70 text-lg">Unlock exclusive deals and premium features</p>
+          <h2 className="text-4xl font-bold text-white mb-4">ACCESS THOUSANDS OF 99% OFF DEALS NOW 🤫</h2>
+          <p className="text-white/70 text-lg mb-4">Upgrade to access our hidden clearance AI software</p>
+          
+          {/* FOMO Banner */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-400/30 rounded-full px-4 py-2"
+          >
+            <span className="text-2xl animate-pulse">🔥</span>
+            <span className="text-orange-400 font-bold text-sm">22 bought in the last hour</span>
+          </motion.div>
         </div>
 
         {/* Billing Toggle */}
@@ -196,14 +207,14 @@ export function VIPPurchaseModal({ isOpen, onClose, onSelectPlan }: VIPPurchaseM
 
               <motion.button
                 onClick={() => onSelectPlan(plan.id, billing)}
-                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-2.5 px-5 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:shadow-purple-500/50"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                 </svg>
-                Join with card
+                Upgrade to VIP
               </motion.button>
 
               {plan.spotsLeft && (

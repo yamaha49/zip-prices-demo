@@ -23,107 +23,129 @@ export function Landing() {
   }
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Background with flowing lines and glows - fills entire screen */}
+    <div className="min-h-screen bg-[#0a0a0f] relative overflow-hidden flex items-center justify-center">
+      {/* Background image collage with dark overlay - Full Screen */}
       <div className="fixed inset-0 w-full h-full">
-        {/* Top-left purple glow */}
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-purple-500/25 rounded-full blur-3xl"></div>
-        {/* Center-bottom blue glow */}
-        <div className="absolute -bottom-40 left-1/2 transform -translate-x-1/2 w-[600px] h-[600px] bg-blue-500/25 rounded-full blur-3xl"></div>
-        {/* Right side purple glow */}
-        <div className="absolute -top-20 -right-20 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
-        
-        {/* Flowing lines that span the entire screen */}
-        <div className="absolute inset-0 w-full h-full">
-          {/* Main blue line - bottom to top curve */}
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-blue-500 to-purple-500 opacity-70"></div>
-          {/* Curved purple line - top right */}
-          <div className="absolute top-20 right-0 w-[800px] h-1 bg-gradient-to-l from-purple-400 to-transparent opacity-50 transform rotate-12"></div>
-          {/* Additional flowing line - center */}
-          <div className="absolute top-1/2 left-0 w-[600px] h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-blue-400 opacity-40 transform rotate-6"></div>
+        {/* Grid of product images */}
+        <div className="absolute inset-0 grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2 p-2 opacity-40">
+          {Array.from({ length: 48 }).map((_, i) => {
+            const images = [
+              '11.jpg', '123.jpg', '21.png', '22.jpg', '222.png', '22222.jpg',
+              '32.png', '33.png', '34.jpg', '43.jpg', '432432.jpg', '43432.png',
+              '44.png', '444.jpg', '453.png', '543.jpg', '5432.jpg', '55.jpg',
+              '55.png', '6.jpg', '6543.jpg', '666.jpg', '6754.jpg'
+            ];
+            const img = images[i % images.length];
+            return (
+              <div 
+                key={i} 
+                className="aspect-square bg-cover bg-center rounded"
+                style={{ backgroundImage: `url(/goods/${img})` }}
+              />
+            );
+          })}
         </div>
+        
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f]/70 via-[#0a0a0f]/85 to-[#0a0a0f]/95"></div>
+        
+        {/* Purple glows */}
+        <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 w-[800px] h-[400px] bg-purple-600/20 rounded-full blur-[120px]"></div>
       </div>
 
-      {/* Header */}
-      <header className="relative z-10 px-6 py-4 flex items-center justify-between">
-        <motion.button
-          onClick={() => navigate('/')}
-          className="flex items-center gap-3 hover:opacity-80 transition-opacity"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-            <span className="text-white font-bold text-sm">E</span>
-          </div>
-          <span className="text-xl font-bold text-white">EMONEY</span>
-        </motion.button>
-        <div className="text-white/70 text-sm">
-          Deals near you
-        </div>
-      </header>
+      {/* Main 1150px Container */}
+      <div className="relative z-10 w-full max-w-[1150px] mx-auto px-6 min-h-screen flex flex-col">
+        {/* Header */}
+        <header className="py-5">
+          <motion.button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="w-7 h-7 bg-purple-600 rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-xs">E</span>
+            </div>
+            <span className="text-lg font-bold text-white">EMONEY</span>
+          </motion.button>
+        </header>
 
-      {/* Main Content */}
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center text-center px-6 py-16">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto"
-        >
-          {/* Main Headline */}
-          <h1 className="text-6xl md:text-7xl font-black text-white leading-tight mb-6">
-            Find deals for <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">a penny</span> in your ZIP.
-          </h1>
-
-          {/* Subheadline */}
-          <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-3xl mx-auto">
-            Enter your ZIP to see what's popping near you. No distractions, just results.
-          </p>
-
-          {/* ZIP Input Form - Smaller and more centered */}
-          <motion.form
-            onSubmit={onSubmit}
+        {/* Main Content - Centered */}
+        <main className="flex-1 flex flex-col items-center justify-center text-center py-12">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-sm mx-auto mb-8"
+            transition={{ duration: 0.6 }}
+            className="w-full max-w-[800px] mx-auto"
           >
-            <div className="flex gap-3">
-              <input
-                type="text"
-                placeholder="Zip Code"
-                className="flex-1 px-4 py-3 text-base bg-black/50 border border-purple-400/50 rounded-lg focus:border-purple-400 focus:outline-none transition-colors text-white placeholder-white/60 backdrop-blur-sm"
-                value={zip}
-                onChange={(e) => setZip(e.target.value)}
-                maxLength={5}
-              />
-              <motion.button
-                type="submit"
-                className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-lg text-base shadow-lg hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Search
-              </motion.button>
-            </div>
-            <p className="text-white/60 text-sm mt-2">US ZIP codes only.</p>
-          </motion.form>
-        </motion.div>
-      </main>
+            {/* Main Headline */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-5">
+              Find deals for <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">wild markdowns</span> in your <span className="text-white">ZIP</span>
+            </h1>
 
-        {/* Scan Modal */}
-        <ScanModal
-          isOpen={showScanning}
-          zipCode={zip}
-          onComplete={handleScanComplete}
-        />
+            {/* Subheadline */}
+            <p className="text-sm md:text-base text-gray-400 mb-10 mx-auto font-light">
+              Enter your ZIP to see what's popping near you. No distractions, just results.
+            </p>
 
-      {/* Footer */}
-      <footer className="relative z-10 py-8 px-6">
-        <div className="max-w-6xl mx-auto text-center text-white/60">
-          <p className="text-sm">© 2024 eMoney. All rights reserved.</p>
-        </div>
-      </footer>
+            {/* ZIP Input Form */}
+            <motion.form
+              onSubmit={onSubmit}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mx-auto mb-3"
+            >
+              <div className="flex flex-col sm:flex-row gap-2.5 items-center justify-center">
+                <div className="relative w-full sm:w-auto">
+                  <input
+                    type="text"
+                    placeholder="Enter US ZIP (e.g., 33101)"
+                    className="w-full sm:w-[340px] px-5 py-3.5 text-sm bg-black/70 border-2 border-purple-500/50 rounded-xl focus:border-purple-500 focus:outline-none focus:ring-4 focus:ring-purple-500/20 transition-all text-white placeholder-gray-500 shadow-[0_0_30px_rgba(168,85,247,0.3)]"
+                    value={zip}
+                    onChange={(e) => setZip(e.target.value)}
+                    maxLength={5}
+                  />
+                </div>
+                <motion.button
+                  type="submit"
+                  className="bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 hover:from-purple-600 hover:via-purple-700 hover:to-pink-600 text-white font-semibold py-3.5 px-8 rounded-xl text-sm shadow-lg hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Search
+                </motion.button>
+              </div>
+              <p className="text-gray-500 text-xs mt-2.5">US ZIP codes only.</p>
+            </motion.form>
+
+            {/* Bottom Tags */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-2.5 justify-center mt-6 mx-auto"
+            >
+              <span className="px-3.5 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white/80 text-xs">
+                Real people finding penny deals
+              </span>
+              <span className="px-3.5 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white/80 text-xs">
+                Shelving, tools, home goods & more
+              </span>
+              <span className="px-3.5 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white/80 text-xs">
+                Results vary by ZIP — check yours
+              </span>
+            </motion.div>
+          </motion.div>
+        </main>
+      </div>
+
+      {/* Scan Modal */}
+      <ScanModal
+        isOpen={showScanning}
+        zipCode={zip}
+        onComplete={handleScanComplete}
+      />
     </div>
   )
 }

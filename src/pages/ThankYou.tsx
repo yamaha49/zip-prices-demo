@@ -47,7 +47,7 @@ export function ThankYou() {
   if (verifying) {
     return (
       <div className="min-h-full px-6 py-10 text-center flex items-center justify-center">
-        <div className="max-w-xl mx-auto">
+        <div className="max-w-[1150px] mx-auto">
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
             <span className="text-white">Verifying payment...</span>
@@ -60,7 +60,7 @@ export function ThankYou() {
 
   return (
     <div className="min-h-full px-6 py-10 text-center">
-      <div className="max-w-xl mx-auto">
+      <div className="max-w-[1150px] mx-auto">
         <h1 className="text-4xl font-extrabold">You're in!</h1>
         <p className="mt-3 text-white/70">We unlocked your ZIP <span className="text-white font-semibold">{zip}</span>.</p>
         <button onClick={() => navigate(`/dashboard?zip=${zip}`)} className="btn-primary mt-8 px-8 py-4">View Unlocked Items</button>

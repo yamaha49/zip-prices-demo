@@ -57,7 +57,9 @@ body {
   background: linear-gradient(100deg, transparent, rgba(255,255,255,0.08), transparent);
   animation: shimmer 1.8s infinite;
 }
-@keyframes shimmer { to { transform: translateX(100%); } }
+@keyframes shimmer { 
+  to { transform: translateX(100%); } 
+}
 
 /* Hover tilt */
 .tilt:hover { transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-2px); }
@@ -100,6 +102,35 @@ body {
   }
   50% { 
     box-shadow: 0 4px 25px rgba(138, 92, 255, 0.4), 0 0 20px rgba(138, 92, 255, 0.3);
+  }
+}
+
+/* Hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card size utility - Content-based height */
+.product-card {
+  width: 100%;
+  min-height: auto;
+  height: auto;
+}
+
+/* Remove fixed heights - let content determine card size */
+@media (max-width: 640px) {
+  .product-card {
+    min-height: auto;
+  }
+}
+
+@media (min-width: 641px) {
+  .product-card {
+    min-height: auto;
   }
 }
 
